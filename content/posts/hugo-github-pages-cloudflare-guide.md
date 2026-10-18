@@ -48,7 +48,8 @@ GitHub 仓库 ──► GitHub Actions 自动构建 ──► GitHub Pages 托�
 # Windows（PowerShell）
 winget install Hugo.Hugo.Extended
 
-# ⚠️ 注意：请在 PowerShell / 终端里运行，不是在旧版 CMD 窗口
+# ⚠️ 注意：请使用新版 PowerShell（7+，需单独安装）。官方文档不建议用旧版 Windows PowerShell / CMD。
+# PowerShell 7 安装：winget install Microsoft.PowerShell
 
 # macOS
 brew install hugo
