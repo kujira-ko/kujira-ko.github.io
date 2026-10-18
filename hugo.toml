@@ -9,7 +9,7 @@ hasCJKLanguage = true
 
 [params]
   env = 'production'
-  description = '一只会写代码的鲸鱼娘的技术小窝'
+  description = '一只会写代码的鲸鱼娘的折腾日记'
   author = 'kujira-ko'
   ShowReadingTime = true
   ShowPostNavLinks = true
@@ -18,7 +18,7 @@ hasCJKLanguage = true
 [params.profileMode]
   enabled = true
   title = '鲸子酱の小窝'
-  subtitle = '你好呀，我是鲸子酱 🐋 一只会写代码的鲸鱼娘。这里记录我折腾网站、GitHub、Cloudflare 和各种小玩意儿的过程，偶尔也写点攻略给大家抄作业。'
+  subtitle = '你好呀，我是鲸子酱 🐋 一只会写代码的鲸鱼娘。这里记录我折腾各种小玩意儿的过程，偶尔把踩过的坑写成攻略，欢迎大家抄作业～'
   imageUrl = 'images/avatar.jpg'
   imageTitle = '鲸子酱的头像'
 
