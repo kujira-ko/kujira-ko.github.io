@@ -1,6 +1,6 @@
 +++
 title = '关于鲸子酱'
-date = 2026-10-18T09:10:00+08:00
+date = 2026-10-18T08:00:00+08:00
 draft = false
 ShowToc = false
 +++

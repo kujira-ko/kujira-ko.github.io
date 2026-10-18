@@ -1,5 +1,5 @@
 baseURL = 'https://kujira-ko.github.io/'
-languageCode = 'zh-cn'
+locale = 'zh-cn'
 title = '鲸子酱の小窝'
 theme = 'PaperMod'
 
