@@ -25,18 +25,19 @@ dateFormat: "2006-01-02"
 timeFormat: "2006-01-02 15:04:05"
 
 # 作者信息
-author: 鲸子酱
+author: kujira-ko
 email: a13014406930@163.com
-description: "一只会写代码的鲸鱼娘的学习日记"
+description: "一个会写代码的可爱少女的学习日记"
 
 # 打字机副标题
 subtitle:
   typing:
     enable: true
     strings:
-      - "你好呀，我是鲸子酱 🐋 一只会写代码的鲸鱼娘"
+      - "你好呀，我是kujira-ko，一个会写代码的可爱少女"
       - "这里记录我学习各种小玩意儿的过程"
-      - "偶尔把踩过的坑写成攻略，欢迎大家抄作业～"
+      - "偶尔把踩过的坑写成攻略，供大家学习"
+      - "欢迎大家来我的小窝做客～"
     typeSpeed: 120
     backSpeed: 60
     backDelay: 1500

@@ -29,7 +29,7 @@ GitHub 仓库 ──► GitHub Actions 自动构建 ──► GitHub Pages 托�
 - **GitHub Pages**：GitHub 提供的免费静态托管，自带全球 CDN 和免费 HTTPS。
 - **Cloudflare**：免费 DNS 托管 + CDN + 免费 HTTPS 证书，让你的域名"干干净净"地上线。
 
-**为什么推荐这套**：免费；零运维（推代码即发布）；网站文件有版本管理；电脑关机网站也活着（因为它住在 GitHub 云端）。
+**为什么推荐这套**：免费；零运维（推代码即发布）；网站文件有版本管理；云端24小时运行。
 
 ## 准备工作
 
@@ -48,12 +48,16 @@ GitHub 仓库 ──► GitHub Actions 自动构建 ──► GitHub Pages 托�
 # Windows（PowerShell）
 winget install Hugo.Hugo.Extended
 
+# ⚠️ 注意：请在 PowerShell / 终端里运行，不是在旧版 CMD 窗口
+
 # macOS
 brew install hugo
 
 # Linux（Ubuntu/Debian）
 sudo snap install hugo
 ```
+
+下载完记得配置环境变量：右键此电脑=>属性=>高级系统设置=>环境变量=>编辑用户变量path=>新建=>输入hugo.exe文件的根目录
 
 安装后验证：
 
@@ -78,7 +82,7 @@ cd my-site
 > `submodule` 会生成 `.gitmodules` 文件并记录主题来源，推送后 GitHub Actions 能自动拉取。
 
 ```bash
-# 在项目根目录执行
+# 在项目根目录执行（右键根目录=>终端powershell）
 git init -b main
 git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
 ```
@@ -221,7 +225,7 @@ jobs:
 
 > ⚠️ `submodules: recursive` 这行不能省——如果你的主题是用 `git submodule add` 装的，缺少这行会导致 Actions 里主题文件夹为空、构建直接报错 "theme not found"。
 
-### 6.2 单独提交 workflow（为什么要分两次提交？）
+### 6.2 提交 workflow
 
 ```bash
 git add .github
@@ -229,16 +233,7 @@ git commit -m "ci: 添加 Hugo 自动构建 workflow"
 git push
 ```
 
-**为什么不把 workflow 放进第一次提交，还要单独提交一次？**
-
-技术上完全可以一次全推，分两次**不是硬性要求，而是推荐的工程习惯**：
-
-1. **职责分离**：第一次提交 = 网站内容（能正常构建的站点），第二次 = 自动化发布（CI 配置）。以后改文章不碰 CI、调 CI 不翻正文，互不干扰。
-2. **便于回滚**：若 Actions 配置写错了，只需回滚第二次提交，网站内容毫发无损。
-3. **快速定位**：上线失败时，一眼能判断是"内容错了"还是"流程错了"，少掉一半头发。
-4. **循序渐进**：先手动验证仓库内容正确、Pages 能出内容，再上自动化，每一步都有明确验收点。
-
-### 6.3 关键一步：把 Pages 来源设为 GitHub Actions
+### 6.3 把 Pages 来源设为 GitHub Actions
 
 然后**在 GitHub 网页上**：仓库 → Settings → Pages → Build and deployment → Source 选择 **GitHub Actions**。
 
@@ -289,7 +284,7 @@ git add . && git commit -m "add: 新文章" && git push   # 发
 | 项目 | 费用 |
 |---|---|
 | Hugo / Git / GitHub Pages / Actions / Cloudflare | 全部免费 |
-| 域名 | 约 ¥50~90 / 年 |
+| 域名 | 约 ¥38~98 / 年 |
 | 服务器、备案 | 都不需要 |
 
 祝建站顺利！🎉
