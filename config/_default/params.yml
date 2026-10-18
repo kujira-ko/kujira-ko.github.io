@@ -1,15 +1,19 @@
 # ===== reimu 主题配置（鲸子酱专属海洋风） =====
 
-# 主导航
+# 主导航（小鱼图标）
 menu:
   - name: home
     url: ""
+    icon: "f578"
   - name: archives
     url: "archives"
+    icon: "f187"
   - name: about
     url: "about"
+    icon: "f007"
   - name: friend
     url: "friend"
+    icon: "f0c1"
 
 # 友链
 friends:
@@ -27,7 +31,7 @@ timeFormat: "2006-01-02 15:04:05"
 # 作者信息
 author: 鲸子酱
 email: a13014406930@163.com
-description: "一只会写代码的鲸鱼娘的折腾日记"
+description: "一只会写代码的鲸鱼娘的学习日记"
 
 # 打字机副标题
 subtitle:
@@ -35,7 +39,7 @@ subtitle:
     enable: true
     strings:
       - "你好呀，我是鲸子酱 🐋 一只会写代码的鲸鱼娘"
-      - "这里记录我折腾各种小玩意儿的过程"
+      - "这里记录我学习各种小玩意儿的过程"
       - "偶尔把踩过的坑写成攻略，欢迎大家抄作业～"
     typeSpeed: 120
     backSpeed: 60
@@ -59,7 +63,7 @@ banner_srcset:
       media: "(max-width: 799px)"
     - src: "images/banner.webp"
       media: "(min-width: 800px)"
-avatar: "avatar.jpg"
+avatar: "images/avatar.jpg"
 
 # 文章目录
 toc: true
