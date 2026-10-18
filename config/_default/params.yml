@@ -1,19 +1,15 @@
 # ===== reimu 主题配置（鲸子酱专属海洋风） =====
 
-# 主导航（小鱼图标）
+# 主导航
 menu:
   - name: home
     url: ""
-    icon: "f578"
   - name: archives
     url: "archives"
-    icon: "f187"
   - name: about
     url: "about"
-    icon: "f007"
   - name: friend
     url: "friend"
-    icon: "f0c1"
 
 # 友链
 friends:
