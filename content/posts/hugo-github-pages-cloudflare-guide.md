@@ -63,23 +63,48 @@ hugo version
 
 ## 第二步：创建站点与主题
 
+### 2.1 创建站点
+
 ```bash
 # 新建站点（my-site 是你的项目文件夹名）
 hugo new site my-site
 cd my-site
+```
 
-# 安装主题（以 PaperMod 为例）
+### 2.2 安装主题（以 PaperMod 为例，两种方式任选）
+
+**方式 A：git submodule（推荐，便于以后更新主题）**
+
+> `submodule` 会生成 `.gitmodules` 文件并记录主题来源，推送后 GitHub Actions 能自动拉取。
+
+```bash
+# 在项目根目录执行
+git init -b main
+git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
+```
+
+**方式 B：普通克隆（简单直接）**
+
+```bash
 git clone https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
 ```
 
-把主题写进配置（`hugo.toml`）：
+> ⚠️ 两种方式二选一。方式 B 没有 `.gitmodules`，后面推送时**不需要**手动创建；
+> 只有方式 A 才会自动生成 `.gitmodules`（由 git 自动创建，无需手写）。
+
+### 2.3 基础配置
+
+编辑 `hugo.toml`：
 
 ```toml
 baseURL = 'https://你的用户名.github.io/'   # 或你的域名
-languageCode = 'zh-cn'
+locale = 'zh-cn'
 title = '我的网站'
 theme = 'PaperMod'
 ```
+
+> 💡 新版 Hugo（v0.158+）用 `locale` 代替了旧的 `languageCode`。
+> 老教程里的 `languageCode = 'zh-cn'` 虽然还能跑，但每次构建都会打出废弃警告，建议直接写成 `locale`。
 
 ## 第三步：写第一篇文章
 
@@ -99,7 +124,7 @@ draft: false        # false = 正式发布；true = 草稿
 正文用 Markdown 写！
 ```
 
-**关键规则**：`title` 要加引号；`draft` 是布尔值（`true`/`false`），**不能加引号**；日期不能写未来时间，否则不发布。
+**关键规则**：`title` 要加引号；`draft` 是布尔值（`true`/`false`），**不能加引号**；日期不能写未来时间，否则按"未来内容"处理、不会发布！
 
 ## 第四步：本地预览
 
@@ -111,21 +136,39 @@ hugo server -D
 
 ## 第五步：推到 GitHub
 
+### 5.1 建仓库
+
 1. 在 GitHub 新建公开仓库，名字随意（如 `my-site`）
-2. 本地关联并推送：
+2. 创建后复制仓库地址：`https://github.com/你的用户名/my-site.git`
+
+### 5.2 提交前的准备工作
+
+**① 创建 `.gitignore`**（把构建产物和临时文件排除在版本管理外）：
 
 ```bash
-git init
-git branch -M main
+echo "/public/" > .gitignore
+echo ".hugo_build.lock" >> .gitignore
+```
+
+**② 检查 `.gitmodules`**：如果第二步用的是**方式 A（submodule）**，`.gitmodules` 会在 `git submodule add` 时自动生成，不需要手动创建；如果用的是方式 B（普通 clone），**不要**创建这个文件。
+
+### 5.3 提交并推送
+
+```bash
 git add .
 git commit -m "init: first commit"
+git branch -M main
 git remote add origin https://github.com/你的用户名/my-site.git
 git push -u origin main
 ```
 
+> GitHub 已经废弃"用户名+密码"推送，若提示认证失败，请改用 **Personal Access Token** 或 GitHub Desktop、Git Credential Manager。
+
 ## 第六步：GitHub Actions 自动发布
 
-在项目里新建 `.github/workflows/hugo.yml`，内容如下（直接抄）：
+### 6.1 创建 workflow 文件
+
+在项目里新建 `.github/workflows/hugo.yml`（注意是三层嵌套：`.github` → `workflows` → `hugo.yml`），内容如下（直接抄）：
 
 ```yaml
 name: Deploy Hugo site to Pages
@@ -151,6 +194,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          submodules: recursive    # ⚠️ 重要！主题用 submodule 安装时必须加
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
@@ -175,9 +219,34 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
+> ⚠️ `submodules: recursive` 这行不能省——如果你的主题是用 `git submodule add` 装的，缺少这行会导致 Actions 里主题文件夹为空、构建直接报错 "theme not found"。
+
+### 6.2 单独提交 workflow（为什么要分两次提交？）
+
+```bash
+git add .github
+git commit -m "ci: 添加 Hugo 自动构建 workflow"
+git push
+```
+
+**为什么不把 workflow 放进第一次提交，还要单独提交一次？**
+
+技术上完全可以一次全推，分两次**不是硬性要求，而是推荐的工程习惯**：
+
+1. **职责分离**：第一次提交 = 网站内容（能正常构建的站点），第二次 = 自动化发布（CI 配置）。以后改文章不碰 CI、调 CI 不翻正文，互不干扰。
+2. **便于回滚**：若 Actions 配置写错了，只需回滚第二次提交，网站内容毫发无损。
+3. **快速定位**：上线失败时，一眼能判断是"内容错了"还是"流程错了"，少掉一半头发。
+4. **循序渐进**：先手动验证仓库内容正确、Pages 能出内容，再上自动化，每一步都有明确验收点。
+
+### 6.3 关键一步：把 Pages 来源设为 GitHub Actions
+
 然后**在 GitHub 网页上**：仓库 → Settings → Pages → Build and deployment → Source 选择 **GitHub Actions**。
 
-推送代码（或手动触发 Actions），大约 2~3 分钟后访问 `https://你的用户名.github.io/` —— 网站上线！
+> ⚠️ **这是最常见的翻车点**：仓库名是 `用户名.github.io` 时，GitHub 会**自动开启 Pages（旧版"Deploy from a branch"模式）**。
+> 如果不改成 `GitHub Actions`，GitHub 会运行内置的 `pages-build-deployment` 工作流，
+> 把 Hugo 项目当 **Jekyll 站点**去构建——结果必然是红色 ✗ 失败。
+
+改完这两步，推送代码（或手动触发 Actions），大约 2~3 分钟后访问 `https://你的用户名.github.io/` —— 网站上线！
 
 ## 第七步（可选）：自定义域名 + Cloudflare
 
@@ -207,10 +276,13 @@ git add . && git commit -m "add: 新文章" && git push   # 发
 | 症状 | 排查 |
 |---|---|
 | 构建失败 | Actions 页面看日志；检查 workflow 缩进是否用了 Tab（要用空格） |
+| 构建报 "theme not found" | checkout 步骤的 `submodules: recursive` 没加，或主题文件夹没进仓库 |
 | 页面没有样式 | 主题没生效：确认 `hugo.toml` 的 `theme = 'xxx'` 与 `themes/` 文件夹名完全一致（区分大小写） |
-| 新文章不显示 | 检查 `draft` 是否为 `false`；预览时加 `-D` |
+| 新文章不显示 | 检查 `draft` 是否为 `false`；预览时加 `-D`；**日期别写未来** |
+| 跑的是 `pages-build-deployment` 且红叉 | Pages 还在旧版模式，去 Settings → Pages → Source 改成 **GitHub Actions** |
 | 自定义域名 404 | DNS 没生效或 CNAME 没配对；等待传播 |
 | HTTPS 报错 | Cloudflare SSL 模式选 Full；GitHub 勾选 Enforce HTTPS |
+| 推送被拒绝（non-fast-forward） | 远端有别人/其他设备推过，先 `git pull --rebase` 再推 |
 
 ## 费用清单
 
