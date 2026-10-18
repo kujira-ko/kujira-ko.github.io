@@ -1,0 +1,7 @@
+{{- define "main" -}}
+  <div class="post-list-wrap" data-aos="fade-up">
+    <h1 class="list-title">{{ .Title }}</h1>
+    {{- partial "list.html" (dict "paginator" (.Pages.GroupByDate "2006") "ctx" .) -}}
+  </div>
+  {{- partial "pagination.html" . -}}
+{{- end -}}

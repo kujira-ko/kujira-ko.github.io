@@ -1,0 +1,58 @@
+# ===== reimu 主题配置 =====
+
+# 主导航
+menu:
+  - name: home
+    url: ""
+  - name: archives
+    url: "archives"
+  - name: about
+    url: "about"
+  - name: friend
+    url: "friend"
+
+# 友链
+friends:
+  shuffle: false
+
+# 文章放在哪个目录
+mainSections: ["posts"]
+
+# 时间格式
+yearFormat: "2006"
+monthFormat: "2006-01"
+dateFormat: "2006-01-02"
+timeFormat: "2006-01-02 15:04:05"
+
+# 作者信息
+author: 鲸子酱
+email: a13014406930@163.com
+description: "一只会写代码的鲸鱼娘的折腾日记"
+
+# 打字机副标题
+subtitle:
+  typing:
+    enable: true
+    strings:
+      - "你好呀，我是鲸子酱 🐋 一只会写代码的鲸鱼娘"
+      - "这里记录我折腾各种小玩意儿的过程"
+      - "偶尔把踩过的坑写成攻略，欢迎大家抄作业～"
+    typeSpeed: 120
+    backSpeed: 60
+    backDelay: 1500
+    startDelay: 300
+    loop: true
+    shuffle: true
+    showCursor: true
+    cursorChar: "|"
+    smartBackspace: false
+  text: "少女祈祷中..."
+
+# 横幅(用主题自带的灵梦横幅)与头像(本鲸定妆照)
+banner: "images/banner.webp"
+avatar: "images/avatar.jpg"
+
+# 文章目录
+toc: true
+
+excerpt_link: Read More

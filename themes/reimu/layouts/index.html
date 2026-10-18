@@ -1,0 +1,68 @@
+{{- define "main" -}}
+  {{- $ctx := . -}}
+  {{- $sort_config := .Site.Params.sort_order.home -}}
+  {{- $posts := where .Site.RegularPages "Section" "in" .Site.Params.mainSections -}}
+  {{- if eq $sort_config "weight" -}}
+    {{- $posts = $posts.ByWeight -}}
+  {{- else if eq $sort_config "weight-reverse" -}}
+    {{- $posts = $posts.ByWeight.Reverse -}}
+  {{- else if eq $sort_config "date" -}}
+    {{- $posts = $posts.ByDate -}}
+  {{- else if eq $sort_config "date-reverse" -}}
+    {{- $posts = $posts.ByDate.Reverse -}}
+  {{- end -}}
+  {{- $pageSize := 0 -}}
+  {{- with $.Site.Params.paginate.post -}}
+    {{- $pageSize = . -}}
+  {{- end -}}
+  {{- $paginator := "" -}}
+  {{- if gt $pageSize 0 -}}
+    {{- $paginator = .Paginate $posts $pageSize -}}
+  {{- else -}}
+    {{- $paginator = .Paginate $posts -}}
+  {{- end -}}
+  {{- if and (eq 1 $paginator.PageNumber) ($ctx.Site.Params.home_categories.enable) -}}
+    <div class="post-categories-wrapper" data-aos="{{ $ctx.Site.Params.animation.options.home.post }}">
+      {{- range $k, $v := $ctx.Site.Params.home_categories.content -}}
+        {{- if $v.categories -}}
+          <div class="post-categories-wrap">
+            <a class="post-link" href="{{ (printf "%s%s" "categories/" (urlize $v.categories)) | relLangURL }}" aria-label="{{ $v.categories }}" title="{{ $v.categories }}"></a>
+            <div class="post-categories-cover">
+              {{- if $v.cover -}}
+                <img
+                  data-src="{{ $v.cover | relURL }}"
+                  data-sizes="auto"
+                  alt="{{ $v.categories }}"
+                  class="lazyload"
+                />
+              {{- else -}}
+                {{- $cover := partial "helpers/randomCover.html" $ctx -}}
+                {{- if $cover -}}
+                  <img
+                    data-src="{{ $cover | relURL }}"
+                    data-sizes="auto"
+                    alt="{{ $v.categories }}"
+                    class="lazyload"
+                  />
+                {{- else -}}
+                  <img
+                    data-src="{{ $ctx.Site.Params.banner | relURL }}"
+                    data-sizes="auto"
+                    alt="{{ $v.categories }}"
+                    class="lazyload"
+                  />
+                {{- end -}}
+              {{- end -}}
+              <h2>{{ $v.categories }}</h2>
+              <h3>{{ i18n "home_categories.count" (len (index $ctx.Site.Taxonomies.categories (lower $v.categories))) }}</h3>
+            </div>
+          </div>
+        {{- end -}}
+      {{- end -}}
+    </div>
+  {{- end -}}
+  {{- range $k, $v := $paginator.Pages -}}
+    {{- partial "post.html"  (dict "index" $k "ctx" . "page" $v ) -}}
+  {{- end -}}
+  {{- partial "pagination.html" . -}}
+{{- end -}}

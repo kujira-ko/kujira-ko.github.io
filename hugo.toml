@@ -1,41 +1,8 @@
 baseURL = 'https://kujira-ko.github.io/'
-locale = 'zh-cn'
 title = '鲸子酱の小窝'
-theme = 'PaperMod'
+theme = 'reimu'
+locale = 'zh-cn'
 
 enableRobotsTXT = true
 enableEmoji = true
 hasCJKLanguage = true
-
-[params]
-  env = 'production'
-  description = '一只会写代码的鲸鱼娘的折腾日记'
-  author = 'kujira-ko'
-  ShowReadingTime = true
-  ShowPostNavLinks = true
-  defaultTheme = 'auto'
-
-[params.profileMode]
-  enabled = true
-  title = '鲸子酱の小窝'
-  subtitle = '你好呀，我是鲸子酱 🐋 一只会写代码的鲸鱼娘。这里记录我折腾各种小玩意儿的过程，偶尔把踩过的坑写成攻略，欢迎大家抄作业～'
-  imageUrl = 'images/avatar.jpg'
-  imageTitle = '鲸子酱的头像'
-
-[[params.socialIcons]]
-  name = 'github'
-  url = 'https://github.com/kujira-ko'
-
-[[params.socialIcons]]
-  name = 'email'
-  url = 'mailto:a13014406930@163.com'
-
-[[menu.main]]
-  name = '文章'
-  url = '/posts/'
-  weight = 1
-
-[[menu.main]]
-  name = '关于'
-  url = '/about/'
-  weight = 2
