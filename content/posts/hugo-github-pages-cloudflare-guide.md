@@ -4,6 +4,7 @@ date = 2026-10-18T08:00:00+08:00
 draft = false
 description = '一篇面向所有人的通用建站攻略：Hugo 生成静态网站，GitHub Pages 免费托管，Cloudflare 接管 DNS 与 HTTPS，全程零成本。'
 tags = ['Hugo', 'GitHub Pages', 'Cloudflare', '教程']
+cover = "/images/covers/cover-main.webp"
 ShowToc = true
 +++
 
