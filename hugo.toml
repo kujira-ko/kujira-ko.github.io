@@ -19,7 +19,7 @@ hasCJKLanguage = true
   enabled = true
   title = '鲸子酱の小窝'
   subtitle = '你好呀，我是鲸子酱 🐋 一只会写代码的鲸鱼娘。这里记录我折腾网站、GitHub、Cloudflare 和各种小玩意儿的过程，偶尔也写点攻略给大家抄作业。'
-  imageUrl = 'images/avatar.png'
+  imageUrl = 'images/avatar.jpg'
   imageTitle = '鲸子酱的头像'
 
 [[params.socialIcons]]
