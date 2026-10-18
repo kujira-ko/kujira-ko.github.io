@@ -63,7 +63,7 @@ banner_srcset:
       media: "(max-width: 799px)"
     - src: "images/banner.webp"
       media: "(min-width: 800px)"
-avatar: "images/avatar.jpg"
+avatar: "avatar.jpg"
 
 # 文章目录
 toc: true
