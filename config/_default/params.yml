@@ -1,15 +1,19 @@
-# ===== reimu 主题配置 =====
+# ===== reimu 主题配置（鲸子酱专属海洋风） =====
 
-# 主导航
+# 主导航（小鱼图标）
 menu:
   - name: home
     url: ""
+    icon: "f578"
   - name: archives
     url: "archives"
+    icon: "f187"
   - name: about
     url: "about"
+    icon: "f007"
   - name: friend
     url: "friend"
+    icon: "f0c1"
 
 # 友链
 friends:
@@ -48,11 +52,39 @@ subtitle:
     smartBackspace: false
   text: "少女祈祷中..."
 
-# 横幅(用主题自带的灵梦横幅)与头像(本鲸定妆照)
+# 横幅：鲸鱼娘入水图（三尺寸自适应）与头像（本鲸定妆照）
 banner: "images/banner.webp"
+banner_srcset:
+  enable: true
+  srcset:
+    - src: "images/banner-600w.webp"
+      media: "(max-width: 479px)"
+    - src: "images/banner-800w.webp"
+      media: "(max-width: 799px)"
+    - src: "images/banner.webp"
+      media: "(min-width: 800px)"
 avatar: "images/avatar.jpg"
 
 # 文章目录
 toc: true
 
 excerpt_link: Read More
+
+# 主题配色：红系 → 海洋蓝系
+internal_theme:
+  light:
+    --red-0: '#0b6fa4'
+    --red-1: '#1e88b0'
+    --red-2: '#3aa6c9'
+    --red-3: '#5fbcd9'
+    --red-4: '#93d6e8'
+    --red-5: '#d6f1f9'
+    --red-5-5: '#e9f8fc'
+    --red-6: '#f3fbfe'
+    --color-red-6-shadow: 'rgba(30, 136, 176, 0.6)'
+    --color-red-3-shadow: 'rgba(30, 136, 176, 0.3)'
+  dark:
+    --red-4: 'rgba(147, 214, 232, 0.5)'
+    --red-5: 'rgba(214, 241, 249, 0.15)'
+    --red-5-5: 'rgba(233, 248, 252, 0.05)'
+    --red-6: 'rgba(243, 251, 254, 0.2)'

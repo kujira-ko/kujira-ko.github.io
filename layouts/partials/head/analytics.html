@@ -1,0 +1,20 @@
+{{- if .Site.Params.baidu_analytics -}}
+  {{- partial "analytics/baidu.html" . -}}
+{{- end -}}
+{{- if .Site.Params.clarity -}}
+  {{- partial "analytics/clarity.html" . -}}
+{{- end -}}
+{{- if .Site.Params.google_analytics -}}
+  {{- partial "analytics/google.html" . -}}
+{{- end -}}
+<style>
+  /* ===== 鲸子酱 · 海洋渐变背景 ===== */
+  html,
+  body {
+    background: linear-gradient(180deg, #eaf8fd 0%, #d9f0fa 45%, #c8e9f7 100%) fixed !important;
+  }
+  [data-theme="dark"],
+  [data-theme="dark"] body {
+    background: linear-gradient(180deg, #0d1b29 0%, #0c2434 45%, #093040 100%) fixed !important;
+  }
+</style>
