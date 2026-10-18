@@ -6,3 +6,8 @@ locale = 'zh-cn'
 enableRobotsTXT = true
 enableEmoji = true
 hasCJKLanguage = true
+
+# 代码块使用 CSS 类模式（跟随主题明暗双色，避免内联深色底造成亮色模式"隐形文字"）
+[markup]
+  [markup.highlight]
+    noClasses = false
