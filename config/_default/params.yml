@@ -6,8 +6,6 @@ menu:
     url: ""
   - name: archives
     url: "archives"
-  - name: music
-    url: "music"
   - name: about
     url: "about"
   - name: friend
@@ -87,3 +85,20 @@ internal_theme:
     --red-5: 'rgba(214, 241, 249, 0.15)'
     --red-5-5: 'rgba(233, 248, 252, 0.05)'
     --red-6: 'rgba(243, 251, 254, 0.2)'
+# 背景音乐播放器（主题自带 APlayer，进站即见）
+player:
+  disable_on_mobile: false
+  aplayer:
+    enable: true
+    options:
+      audio:
+        - name: 小窝
+          artist: kujira-ko
+          url: /music/xiaowo.mp3
+          cover: /images/covers/cover-main.webp
+      fixed: true
+      volume: 0.6
+      preload: none
+      mutex: true
+  meting:
+    enable: false
