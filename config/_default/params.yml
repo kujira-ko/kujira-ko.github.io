@@ -6,6 +6,8 @@ menu:
     url: ""
   - name: archives
     url: "archives"
+  - name: music
+    url: "music"
   - name: about
     url: "about"
   - name: friend
