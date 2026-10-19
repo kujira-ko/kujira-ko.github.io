@@ -102,3 +102,7 @@ player:
       mutex: true
   meting:
     enable: false
+
+# 素材署名（封面/站点插图，已获作者授权）
+copyright: |-
+  <div style="margin-bottom:6px;">封面/站点插图：Xx勿忘xX（Bilibili）· 已获作者授权，仅个人展示</div>
