@@ -89,7 +89,7 @@ internal_theme:
 player:
   disable_on_mobile: false
   aplayer:
-    enable: true
+    enable: false
     options:
       audio:
         - name: 小窝
@@ -106,3 +106,12 @@ player:
 # 素材署名（封面/站点插图，已获作者授权）
 copyright: |-
   <div style="margin-bottom:6px;">封面/站点插图：Xx勿忘xX（Bilibili）· 已获作者授权，仅个人展示</div>
+
+# 侧栏注入：网易云官方外链播放器（主题曲《小窝》）
+injector:
+  sidebar_begin: |-
+    <div class="netease-player" style="margin: 0 0 14px 0;">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="86"
+        src="https://music.163.com/outchain/player?type=2&amp;id=3450609412&amp;auto=0&amp;height=66"
+        style="border-radius: 10px; overflow: hidden;"></iframe>
+    </div>
