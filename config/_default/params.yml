@@ -67,6 +67,15 @@ toc: true
 
 excerpt_link: Read More
 
+# 鼠标光标
+# 鼠标指针
+reimu_cursor:
+  enable: true
+  cursor:
+    default: ../images/cursor/cursor.png
+    pointer: ../images/cursor/cursor-pointer.png
+    text: ../images/cursor/cursor.png
+
 # 主题配色：红系 → 海洋蓝系
 internal_theme:
   light:

@@ -1,11 +1,11 @@
 +++
-title = '从零搭建个人网站：Hugo + GitHub Pages + Cloudflare 通用攻略'
+title = '从零开始搭建属于你自己的个人网站'
 date = 2026-10-18T08:00:00+08:00
 draft = false
-description = '一篇面向所有人的通用建站攻略：Hugo 生成静态网站，GitHub Pages 免费托管，Cloudflare 接管 DNS 与 HTTPS，全程零成本。'
-tags = ['Hugo', 'GitHub Pages', 'Cloudflare', '教程']
+description = '一篇面向所有人的通用建站攻略：Hugo 生成静态网站，GitHub Pages 免费托管，Cloudflare 接管 DNS 与 HTTPS。'
+tags = ['Hugo', '网站']
+categories = ["教程"]
 cover = "/images/covers/cover-main.webp"
-ShowToc = true
 +++
 
 想拥有一个自己的网站，但不想买服务器、不想备案、不想被域名托管费劝退？这篇攻略帮你用 **Hugo + GitHub Pages + Cloudflare** 零成本搭出一个体面的个人网站。
@@ -29,8 +29,6 @@ GitHub 仓库 ──► GitHub Actions 自动构建 ──► GitHub Pages 托�
 - **GitHub Pages**：GitHub 提供的免费静态托管，自带全球 CDN 和免费 HTTPS。
 - **Cloudflare**：免费 DNS 托管 + CDN + 免费 HTTPS 证书，让你的域名"干干净净"地上线。
 
-**为什么推荐这套**：免费；零运维（推代码即发布）；网站文件有版本管理；云端24小时运行。
-
 ## 准备工作
 
 | 材料 | 说明 |
@@ -49,7 +47,7 @@ GitHub 仓库 ──► GitHub Actions 自动构建 ──► GitHub Pages 托�
 winget install Hugo.Hugo.Extended
 
 # ⚠️ 注意：请使用新版 PowerShell（7+，需单独安装）。官方文档不建议用旧版 Windows PowerShell / CMD。
-# PowerShell 7 安装：winget install Microsoft.PowerShell
+PowerShell 7 安装：winget install Microsoft.PowerShell
 
 # macOS
 brew install hugo
@@ -58,9 +56,9 @@ brew install hugo
 sudo snap install hugo
 ```
 
-下载完记得配置环境变量：右键此电脑=>属性=>高级系统设置=>环境变量=>编辑用户变量path=>新建=>输入hugo.exe文件的根目录
+安装后记得配置环境变量：右键"此电脑" → 属性 → 高级系统设置 → 环境变量 → 编辑用户变量 Path → 新建 → 输入 hugo.exe 所在目录。
 
-安装后验证：
+验证安装：
 
 ```bash
 hugo version
@@ -244,6 +242,8 @@ git push
 
 改完这两步，推送代码（或手动触发 Actions），大约 2~3 分钟后访问 `https://你的用户名.github.io/` —— 网站上线！
 
+做到这一步，恭喜你！你的网站已经搭建完成，接下来可以自由发挥想象力和才能了~
+
 ## 第七步（可选）：自定义域名 + Cloudflare
 
 1. **注册域名**（阿里云、腾讯云、Cloudflare 均可，`.com` 常见且便宜）
@@ -265,7 +265,7 @@ hugo server -D                  # 看（可选）
 git add . && git commit -m "add: 新文章" && git push   # 发
 ```
 
-推完等 Actions 构建，刷新域名就能看到新内容。**写 → 看 → 推**，就这一个习惯。
+推完等 Actions 构建，刷新域名就能看到新内容。**写 → 看 → 推**，养成这一个习惯就够了。
 
 ## 常见问题
 
@@ -279,13 +279,5 @@ git add . && git commit -m "add: 新文章" && git push   # 发
 | 自定义域名 404 | DNS 没生效或 CNAME 没配对；等待传播 |
 | HTTPS 报错 | Cloudflare SSL 模式选 Full；GitHub 勾选 Enforce HTTPS |
 | 推送被拒绝（non-fast-forward） | 远端有别人/其他设备推过，先 `git pull --rebase` 再推 |
-
-## 费用清单
-
-| 项目 | 费用 |
-|---|---|
-| Hugo / Git / GitHub Pages / Actions / Cloudflare | 全部免费 |
-| 域名 | 约 ¥38~98 / 年 |
-| 服务器、备案 | 都不需要 |
 
 祝建站顺利！🎉
