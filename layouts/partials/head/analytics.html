@@ -21,22 +21,29 @@
 </style>
 
 <style id="kujira-rand-cursor">
-body{cursor:url('/images/cursor/kujira-01.png') 0 0,auto}
-body a,body button,body [role=button]{cursor:url('/images/cursor/kujira-pointer-01.png') 0 0,pointer}
-input,textarea,select,label{cursor:url('/images/cursor/kujira-01.png') 0 0,auto}
+html,body{cursor:url('/images/cursor/kujira-01.png') 0 0,auto !important}
+a,button,[role=button],.btn,#sidebar a,.sidebar a{cursor:url('/images/cursor/kujira-pointer-01.png') 0 0,pointer !important}
+input,textarea,select,label{cursor:url('/images/cursor/kujira-01.png') 0 0,auto !important}
 </style>
 <script>
 (function(){
-  var n = 1 + Math.floor(Math.random() * 12);            /* 1..12 */
+  var n = 1 + Math.floor(Math.random() * 12);
   var z = (n < 10 ? '0' : '') + n;
   var d = 'kujira-' + z + '.png';
   var p = 'kujira-pointer-' + z + '.png';
+  var C = function(f){ return "url('/images/cursor/" + f + "') 0 0"; };
   var s = document.getElementById('kujira-rand-cursor');
   if (s) {
     s.textContent =
-      'body{cursor:url("/images/cursor/' + d + '") 0 0,auto}' +
-      'body a,body button,body [role=button]{cursor:url("/images/cursor/' + p + '") 0 0,pointer}' +
-      'input,textarea,select,label{cursor:url("/images/cursor/' + d + '") 0 0,auto}';
+      'html,body{cursor:' + C(d) + ',auto !important}' +
+      'a,button,[role=button],.btn,#sidebar a,.sidebar a{cursor:' + C(p) + ',pointer !important}' +
+      'input,textarea,select,label{cursor:' + C(d) + ',auto !important}';
   }
+  /* 双保险：直接给 html/body 贴内联样式 */
+  try {
+    var st = document.createElement('style');
+    st.textContent = 'html,body{cursor:' + C(d) + ',auto!important}';
+    document.head.appendChild(st);
+  } catch(e) {}
 })();
 </script>
