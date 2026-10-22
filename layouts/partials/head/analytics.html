@@ -7,6 +7,7 @@
 {{- if .Site.Params.google_analytics -}}
   {{- partial "analytics/google.html" . -}}
 {{- end -}}
+
 <style>
   /* ===== 鲸子酱 · 海洋渐变背景 ===== */
   html,
@@ -18,3 +19,24 @@
     background: linear-gradient(180deg, #0d1b29 0%, #0c2434 45%, #093040 100%) fixed !important;
   }
 </style>
+
+<style id="kujira-rand-cursor">
+body{cursor:url('/images/cursor/kujira-01.png') 0 0,auto}
+body a,body button,body [role=button]{cursor:url('/images/cursor/kujira-pointer-01.png') 0 0,pointer}
+input,textarea,select,label{cursor:url('/images/cursor/kujira-01.png') 0 0,auto}
+</style>
+<script>
+(function(){
+  var n = 1 + Math.floor(Math.random() * 12);            /* 1..12 */
+  var z = (n < 10 ? '0' : '') + n;
+  var d = 'kujira-' + z + '.png';
+  var p = 'kujira-pointer-' + z + '.png';
+  var s = document.getElementById('kujira-rand-cursor');
+  if (s) {
+    s.textContent =
+      'body{cursor:url("/images/cursor/' + d + '") 0 0,auto}' +
+      'body a,body button,body [role=button]{cursor:url("/images/cursor/' + p + '") 0 0,pointer}' +
+      'input,textarea,select,label{cursor:url("/images/cursor/' + d + '") 0 0,auto}';
+  }
+})();
+</script>
